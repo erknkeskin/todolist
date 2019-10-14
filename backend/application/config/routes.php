@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -49,6 +49,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'app';
+
+$route[API_PATH . '/todo/all']['get'] = 'todo/index';
+$route[API_PATH . '/todo/add']['post'] = 'todo/add';
+$route[API_PATH . '/todo/delete/(:num)']['delete'] = 'todo/delete/$1';
+$route[API_PATH . '/todo/update/(:num)']['put'] = 'todo/update/$1';
+
+$route[API_PATH . '/item/all']['get'] = 'item/index';
+$route[API_PATH . '/item/add']['post'] = 'item/add';
+$route[API_PATH . '/item/delete/(:num)']['get'] = 'item/delete/$1';
+$route[API_PATH . '/item/update/(:num)']['put'] = 'item/update/$1';
+
+$route[API_PATH . '/auth/login']['post'] = 'auth/login';
+$route[API_PATH . '/auth/logout']['get'] = 'auth/logout';
+$route[API_PATH . '/auth/user']['get'] = 'auth/user';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
