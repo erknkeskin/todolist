@@ -56,9 +56,9 @@ $route[API_PATH . '/todo/add']['post'] = 'todo/add';
 $route[API_PATH . '/todo/delete/(:num)']['delete'] = 'todo/delete/$1';
 $route[API_PATH . '/todo/update/(:num)']['put'] = 'todo/update/$1';
 
-$route[API_PATH . '/item/all']['get'] = 'item/index';
+$route[API_PATH . '/item/list/(:num)']['get'] = 'item/index/$1';
 $route[API_PATH . '/item/add']['post'] = 'item/add';
-$route[API_PATH . '/item/delete/(:num)']['get'] = 'item/delete/$1';
+$route[API_PATH . '/item/delete/(:num)']['delete'] = 'item/delete/$1';
 $route[API_PATH . '/item/update/(:num)']['put'] = 'item/update/$1';
 
 $route[API_PATH . '/auth/login']['post'] = 'auth/login';

@@ -31,16 +31,27 @@ class MysqlTodoDal implements ITodoDal
         $id = $data['todo_id'];
         unset($data['todo_id']);
 
-        $q = $this->ci->db->where('todo_id', $id)->update('todos', $data);
+        $query = $this->ci->db->where('todo_id', $id)->get('todos');
 
-        return $q !== false ? true : false;
+        if ($query->num_rows() > 0) {
+            $q = $this->ci->db->where('todo_id', $id)->update('todos', $data);
 
+            return $q !== false ? true : false;
+        } else {
+            return false;
+        }
     }
 
     public function delete($id)
     {
-        $q = $this->ci->db->where('todo_id', $id)->delete('todos');
+        $query = $this->ci->db->where('todo_id', $id)->get('todos');
 
-        return $q !== false ? true : false;
+        if ($query->num_rows() > 0) {
+            $q = $this->ci->db->where('todo_id', $id)->delete('todos');
+
+            return $q !== false ? true : false;
+        } else {
+            return false;
+        }
     }
 }
