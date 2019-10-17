@@ -27,3 +27,7 @@ function debug($param){
     echo "</pre>";
     exit;
 }
+
+function email_validate($email) {
+    return filter_var($email, FILTER_VALIDATE_EMAIL) ? true : false;
+}

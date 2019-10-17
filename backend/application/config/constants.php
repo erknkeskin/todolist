@@ -86,5 +86,6 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 defined('API_PATH')      OR define('API_PATH', 'api/v1');
 defined('DB_LAYER')      OR define('DB_LAYER', 'Mysql');
+defined('JWT_SECRET')      OR define('JWT_SECRET', 'MyTodoListApp');
 
 

@@ -62,7 +62,6 @@ $route[API_PATH . '/item/delete/(:num)']['delete'] = 'item/delete/$1';
 $route[API_PATH . '/item/update/(:num)']['put'] = 'item/update/$1';
 
 $route[API_PATH . '/auth/login']['post'] = 'auth/login';
-$route[API_PATH . '/auth/logout']['get'] = 'auth/logout';
 $route[API_PATH . '/auth/user']['get'] = 'auth/user';
 
 $route['404_override'] = '';

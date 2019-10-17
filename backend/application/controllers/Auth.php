@@ -1,21 +1,31 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+require APPPATH . 'third_party/Business/AuthManager.php';
+require APPPATH . 'third_party/DataAccess/' . DB_LAYER . '/' . DB_LAYER . 'AuthDal.php';
+
 class Auth extends CI_Controller
 {
 
-    public function login()
+    private $authDal;
+    private $authManager;
+    private $dbLayer;
+
+    public function __construct()
     {
-        echo "login";
+        parent::__construct();
+        $this->dbLayer = DB_LAYER . 'AuthDal';
+        $this->authDal = new $this->dbLayer();
+        $this->authManager = new AuthManager($this->authDal);
     }
 
-    public function logout()
+    public function login()
     {
-        echo "logout";
+        output($this->authManager->login());
     }
 
     public function user()
     {
-        echo "user data";
+        output($this->authManager->user());
     }
 }
