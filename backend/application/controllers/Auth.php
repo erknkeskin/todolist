@@ -13,6 +13,7 @@ class Auth extends CI_Controller
 
     public function __construct()
     {
+        header('Access-Control-Allow-Origin: *');
         parent::__construct();
         $this->dbLayer = DB_LAYER . 'AuthDal';
         $this->authDal = new $this->dbLayer();

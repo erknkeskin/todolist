@@ -11,7 +11,6 @@ function output($data)
 
 function get_all_post_data()
 {
-
     $data = array();
 
     foreach ($_POST as $key => $value) {
@@ -21,13 +20,15 @@ function get_all_post_data()
     return $data;
 }
 
-function debug($param){
+function debug($param)
+{
     echo "<pre>";
     print_r($param);
     echo "</pre>";
     exit;
 }
 
-function email_validate($email) {
+function email_validate($email)
+{
     return filter_var($email, FILTER_VALIDATE_EMAIL) ? true : false;
 }

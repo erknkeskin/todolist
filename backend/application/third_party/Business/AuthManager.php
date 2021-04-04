@@ -8,9 +8,11 @@ use \Firebase\JWT\ExpiredException;
 class AuthManager
 {
     private $authDal;
+    private $ci;
 
     public function __construct(MysqlAuthDal $authDal)
     {
+        $this->ci =& get_instance();
         $this->authDal = $authDal;
     }
 
@@ -60,21 +62,33 @@ class AuthManager
         }
     }
 
+    public function is_authorize($user_id, $token)
+    {
+        try {
+            $token_data = JWT::decode($token, JWT_SECRET, array('HS256'));
+
+            return $token_data->user_id != $user_id ? false : true;
+
+        } catch (ExpiredException $e) {
+            return false;
+        } catch (DomainException $e) {
+            return false;
+        }
+    }
+
     public function user()
     {
         try {
-
-            if (!isset(getallheaders()['Authorization'])) {
+            $token = $this->ci->input->get('token');
+            if (!isset($token) || $token == '') {
                 return array(
                     'status' => 'header_error',
                     'message' => 'Yetkisiz erişim isteği'
                 );
             }
-    
-            $token = getallheaders()['Authorization'];
-    
+
             $token_data = JWT::decode($token, JWT_SECRET, array('HS256'));
-            
+
             return array(
                 'status' => 'ok',
                 'token_data' => $token_data

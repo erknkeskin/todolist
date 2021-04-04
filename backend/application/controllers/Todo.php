@@ -14,6 +14,7 @@ class Todo extends CI_Controller
 
     public function __construct()
     {
+        header("Access-Control-Allow-Origin: *");
         parent::__construct();
         $this->dbLayer = DB_LAYER . 'TodoDal';
         $this->todoDal = new $this->dbLayer();
@@ -35,8 +36,13 @@ class Todo extends CI_Controller
         output($this->todoManager->update($id));
     }
 
-    public function delete($id)
+    public function done()
     {
-        output($this->todoManager->delete($id));
+        output($this->todoManager->done());
+    }
+
+    public function delete()
+    {
+        output($this->todoManager->delete());
     }
 }
